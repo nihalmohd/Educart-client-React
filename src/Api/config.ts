@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios"
 
 const baseURL = process.env.REACT_APP_BASEURL as string ;
-// const baseURL = "http://localhost:5000" ;
 const axiosIntance = axios.create({
     baseURL: baseURL
 });
