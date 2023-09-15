@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios"
 
-const baseURL = process.env.REACT_APP_BASEURL as string;
+const baseURL = process.env.REACT_APP_BASEURL as string ;
 const axiosIntance = axios.create({
     baseURL: baseURL
 });
