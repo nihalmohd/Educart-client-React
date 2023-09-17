@@ -1,7 +1,8 @@
-import  { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useNavigate, useParams } from 'react-router-dom';
 import { axiosIntance } from '../../../Api/config';
+
 
 interface Course {
   _id: string;
@@ -22,7 +23,7 @@ interface Course {
 const PaymentPaypal = () => {
   const { _id } = useParams();
   const [courseDetails, setCourseDetails] = useState<Course>();
-  const [coursePrice, setcoursePrice] = useState<number>()
+  const [coursePrice, setcoursePrice] = useState<number>(10)
 
   const [showPayPalButton, setShowPayPalButton] = useState(false);
   const PaypalButtonRef = useRef<HTMLDivElement>(null);
@@ -40,7 +41,7 @@ const PaymentPaypal = () => {
         });
         const { FoundedCourseByid } = response.data;
         setCourseDetails(FoundedCourseByid);
-        setcoursePrice(courseDetails?.coursePrice)
+        setcoursePrice(courseDetails?.coursePrice as number)
 
       } catch (error) {
         console.error('Error fetching course details:', error);
@@ -48,9 +49,10 @@ const PaymentPaypal = () => {
     }
 
     fetchData();
-  }, [_id]);
+  }, []);
+  
   useEffect(() => {
-    setcoursePrice(courseDetails?.coursePrice)
+    setcoursePrice(courseDetails?.coursePrice as number)
   }, [courseDetails])
   const handleClickButton = () => {
     setShowPayPalButton(true);
@@ -61,13 +63,20 @@ const PaymentPaypal = () => {
 
   const HanldeCourse = async () => {
     console.log("halo");
-    
+
     const { data } = await axiosIntance.post("/UpdateCouseid", { CourseId: _id })
     if (data) {
-      const {UpdatedCourseId} = data
+      const { UpdatedCourseId } = data
       console.log(UpdatedCourseId);
-      if(UpdatedCourseId){
-        navigate('/Mycourses')
+      if (UpdatedCourseId) {
+        const {data} = await axiosIntance.post("/paymentDetails",{CourseId:_id,coursePrice:coursePrice})
+        if(data){
+          const {createdPayments} = data
+          if(createdPayments){
+            console.log(createdPayments);
+            navigate('/Mycourses')          
+          }
+        }
       }
     }
   }
@@ -82,33 +91,29 @@ const PaymentPaypal = () => {
           <button className='bg-black w-full h-10 text-white text-lg font-bold flex justify-center items-center hover:bg-white hover:text-black hover:border-2 hover:border-black shadow-xl hover:scale-x-95 mt-3' onClick={() => handleClickButton()}>Pay Now</button>
           <button className='bg-black w-full h-10 text-white text-lg font-bold flex justify-center items-center hover:bg-white hover:text-black hover:border-2 hover:border-black shadow-xl hover:scale-x-95 mt-3' onClick={() => { navigate(`/showCourse/${_id}`) }}>Cancel Payment</button>
           <div className="w-full h-80 p-2 " style={{ display: showPayPalButton ? 'block' : 'none' }} ref={PaypalButtonRef}>
-            <PayPalScriptProvider options={{ clientId: "AQ_VtAoAHy4-tPWs1_sXBapzBkyNgKiIU96Xmd7N-h-z7ONzRQSd4wJPGOIBXciDZxbFfIyiKzUcDeij" }}>
+            <PayPalScriptProvider options={{ clientId: process.env.REACT_APP_PAYPAL_CLIENTID as string }}>
               <PayPalButtons style={{ layout: "horizontal" }}
                 createOrder={(_data: any, actions: any) => {
                   return actions.order.create({
                     "intent": "CAPTURE",
-                    "purchase_units": [
+                    purchase_units: [
                       {
-                        "reference_id": "default",
-                        "amount": {
+                        amount: {
                           "currency_code": "USD",
-                          "value": coursePrice ? coursePrice.toFixed(2) : "0.00" // Use coursePrice here
-                        }
-                      }
-                    ]
+                          "value":coursePrice.toString() as string 
+                        },
+                      },
+                    ],
                   });
                 }}
-                onApprove={(_data: any, actions: any) => {
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-                  return actions.order.capture().then(async function () {
-                     HanldeCourse();
-                   
-                  })
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    .catch(function (error: any) {
-                      console.log(error, "Payment Faild");
-
-                    });
+                onApprove={async (_data: any, actions: any) => {
+                  try {
+                    await actions.order.capture();
+                    await HanldeCourse();
+                  } catch (error) {
+                    console.error("Payment capture failed:", error);
+                    // Handle the payment failure here, e.g., show an error message to the user
+                  }
                 }}
               />
             </PayPalScriptProvider>
