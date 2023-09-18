@@ -35,11 +35,15 @@ import { useEffect, useState } from "react";
         DisplayCourse()
         handleUsers()
         handleMentors()
+        HandlePayments()
     }, [])
     
     const [Admincourse, setAdminCourse] = useState<number>()
     const [getUser,SetGotUser]=useState<number>()
     const [GetMentor,SetGotMentor]=useState<number>()
+    const [pament,setpayment] = useState()
+    const [Total,setTotal] = useState<number>()
+
     const DisplayCourse = async () => {
         const { data } = await axiosIntance.get("/Admin/AdminDisplayCourse")
         console.log(data);
@@ -57,6 +61,17 @@ import { useEffect, useState } from "react";
         const {data}= await axiosIntance.post("/Admin/getMentors")
         SetGotMentor(data.DisplayGetUser.length)
         console.log(data.DisplayGetUser);
+    }
+    const HandlePayments = async() =>{
+        const {data} = await axiosIntance.get("/Admin/GetPayments")
+        if(data) {  
+            const {FoundedPaymentDetails} = data 
+            console.log(FoundedPaymentDetails);
+            if(FoundedPaymentDetails){
+                const totalPrice = FoundedPaymentDetails.reduce((total:any, doc:any) => total + doc.coursePrice, 0);
+                setTotal(totalPrice)
+            }
+        }
     }
       
   return (
@@ -101,7 +116,7 @@ import { useEffect, useState } from "react";
                           
                       </div>
                       <div className="w-full h-1/2  flex justify-center items-start">
-                          <h1 className='font-serif text-2xl font-bold underline ' >{109999}</h1>
+                          <h1 className='font-serif text-2xl font-bold underline ' >{Total}</h1>
                           
                       </div>
                   </div>

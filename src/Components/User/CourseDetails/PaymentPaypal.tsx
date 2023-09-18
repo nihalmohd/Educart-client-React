@@ -20,13 +20,15 @@ interface Course {
   Status?: boolean;
 }
 
+
 const PaymentPaypal = () => {
   const { _id } = useParams();
   const [courseDetails, setCourseDetails] = useState<Course>();
-  const [coursePrice, setcoursePrice] = useState<number>(10)
-
+  const [coursePrice, setcoursePrice] = useState<number>(1)
+  const price=useRef(null)
   const [showPayPalButton, setShowPayPalButton] = useState(false);
   const PaypalButtonRef = useRef<HTMLDivElement>(null);
+
   console.log(courseDetails);
   console.log(coursePrice);
 
@@ -39,9 +41,13 @@ const PaymentPaypal = () => {
         const response = await axiosIntance.get('/CourseDeatailsByid', {
           params: { _id },
         });
+        console.log({response:response.data});
+        
         const { FoundedCourseByid } = response.data;
         setCourseDetails(FoundedCourseByid);
-        setcoursePrice(courseDetails?.coursePrice as number)
+        console.log({FoundedCourseByid}); 
+        price.current=FoundedCourseByid?.coursePrice
+        // setcoursePrice(price.current as unknown as number)
 
       } catch (error) {
         console.error('Error fetching course details:', error);
@@ -49,11 +55,12 @@ const PaymentPaypal = () => {
     }
 
     fetchData();
-  }, []);
-  
-  useEffect(() => {
-    setcoursePrice(courseDetails?.coursePrice as number)
-  }, [courseDetails])
+  }, [_id]);
+
+  // useEffect(() => {
+  //   setcoursePrice(courseDetails?.coursePrice as number)
+  // }, [courseDetails]);
+
   const handleClickButton = () => {
     setShowPayPalButton(true);
     if (PaypalButtonRef.current) {
@@ -69,19 +76,19 @@ const PaymentPaypal = () => {
       const { UpdatedCourseId } = data
       console.log(UpdatedCourseId);
       if (UpdatedCourseId) {
-        const {data} = await axiosIntance.post("/paymentDetails",{CourseId:_id,coursePrice:coursePrice})
-        if(data){
-          const {createdPayments} = data
-          if(createdPayments){
+        const { data } = await axiosIntance.post("/paymentDetails", { CourseId: _id, coursePrice:price })
+        if (data) {
+          const { createdPayments } = data
+          if (createdPayments) {
             console.log(createdPayments);
-            navigate('/Mycourses')          
+            navigate('/Mycourses')
           }
         }
       }
     }
   }
 
-  return (
+  return ( 
     <div>
       <div className="w-full h-screen  flex justify-center items-center">
         <div className="w-1/2 h-96 bg-slate-300  border-2 border-black p-1 drop-shadow-2xl">
@@ -95,12 +102,11 @@ const PaymentPaypal = () => {
               <PayPalButtons style={{ layout: "horizontal" }}
                 createOrder={(_data: any, actions: any) => {
                   return actions.order.create({
-                    "intent": "CAPTURE",
+                   
                     purchase_units: [
                       {
-                        amount: {
-                          "currency_code": "USD",
-                          "value":coursePrice.toString() as string 
+                        amount: { 
+                          value:price.current, 
                         },
                       },
                     ],
