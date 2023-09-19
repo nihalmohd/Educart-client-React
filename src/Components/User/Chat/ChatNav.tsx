@@ -1,5 +1,6 @@
-
+import { useScriptProviderContext } from '@paypal/react-paypal-js';
 import Chating from './Chating'
+import { useEffect } from 'react';
 
 
 interface mentor {
@@ -21,6 +22,7 @@ interface ChatNavProps {
 }
 
 const ChatNav  = () => {
+
   return (
     <div className='w-full h-full  mt-2'>
        <div className="w-full h-full  border border-black ">

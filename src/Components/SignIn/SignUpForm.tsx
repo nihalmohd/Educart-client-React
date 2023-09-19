@@ -103,7 +103,8 @@ if(User){
                         updateUser({
                             username: UserExit.Username,
                             email: UserExit.Email,
-                            id: UserExit._id                        ,
+                            id: UserExit._id,
+                            
                         })
                         );
                     navigate("/", { replace: true })
