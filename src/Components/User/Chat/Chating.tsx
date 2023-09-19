@@ -1,13 +1,29 @@
+import { useState } from "react";
 
 const Chating = () => {
+    const [message,setMessage] = useState<string>("")
+  
+
+    const HandleClick  = ()=>{
+    console.log("halooooo");
+    
+    }
+
+   const handleKeyDown = (e:any) => {
+        if (e.key === 'Enter') {
+            HandleClick() 
+        }
+      };
+ console.log(message);
+ 
     return (
         <div className='w-full h-full  mt-1 '>
-            <div className="w-full h-[440px]  border border-black  pb-1 6">
+            <div className="w-full h-[440px] overflow-auto  border border-black  pb-1 6">
                 <div className="w-full h-full ">
-                    <div className="w-full h-full    mt-1 overflow-y-scroll ">
+                    <div className="w-full h-full mt-1 ">
                         <div className="w-full h-full  flex justify-end mb-1 mt-1  gap-2 ">
                             <div className="h-[400px] w-full flex justify-end items-end  ">
-                                <div className="w-full h-fit ">
+                                <div className="w-full h-full ">
                                 <div className="w-1/2 h-fit  flex justify-start itmes-end mt-1 p-1">
                                             <div className="w-8 h-8 bg-red-200 rounded-full">
                                                 <img src="https://res.cloudinary.com/dgb07yvbv/image/upload/v1694102277/uibg2w6q56ybr77bgotd.png" className='w-full h-full object-cover' alt="no img" />
@@ -54,8 +70,9 @@ const Chating = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="w-full h-fit flex justify-start items-end   mt-1">
-                                        <div className="w-1/2 h-fit  flex justify-start itmes-end mt-1 p-1">
+                                  
+                                    <div className="w-full h-fit flex justify-start items-end    mt-1">
+                                        <div className="w-1/2 h-fit  flex justify-start itmes-end ml-1 p-1">
                                             <div className="w-8 h-8 bg-red-200 rounded-full">
                                                 <img src="https://res.cloudinary.com/dgb07yvbv/image/upload/v1694102277/uibg2w6q56ybr77bgotd.png" className='w-full h-full object-cover' alt="no img" />
                                             </div>
@@ -64,17 +81,19 @@ const Chating = () => {
                                             </div>
                                         </div>
                                     </div>
+
+                                    
                                 </div>
                             </div>
 
                         </div>
                     </div>
-                        <div className="w-full h-16  flex justify-center items-center gap-2">
-                            <input type="text" className='w-11/12 h-10 bg-white rounded-lg border border-black p-2' placeholder='Insert your message here' />
-                            <button className='w-1/12 h-10 bg-black text-white  hover: border hover:bg-transparent hover:text-black  rounded-lg hover:border-black mr-1 hover:translate-x-0'>Send</button>
-                        </div>
                 </div>
             </div>
+                        <div className="w-full h-16  flex justify-center items-center gap-2">
+                            <input onChange={(e)=>{setMessage(e.target.value)}} type="text" className='w-11/12 h-10 bg-white rounded-lg border border-black p-2' placeholder='Insert your message here' />
+                            <button onKeyDown={handleKeyDown} onClick={()=>HandleClick()} className='w-1/12 h-10 bg-black text-white  hover: border hover:bg-transparent hover:text-black  rounded-lg hover:border-black mr-1 hover:translate-x-0' >Send</button>
+                        </div>
         </div>
     )
 }

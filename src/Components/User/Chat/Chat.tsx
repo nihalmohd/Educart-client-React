@@ -3,7 +3,7 @@ import Chatside from './Chatside'
 const Chat = () => {
   return (
     <div>
-        <Chatside/>
+        <Chatside  />
         
     </div>
   )

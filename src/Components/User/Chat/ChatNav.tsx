@@ -1,7 +1,26 @@
 
 import Chating from './Chating'
 
-const ChatNav = () => {
+
+interface mentor {
+  _id:string;
+  Username:string;
+  Email:string;
+  Password:string;
+  ProfileImage:string
+}
+
+
+export interface Chat {
+  UserId?:string
+  MentorId?:[mentor]
+  latestMessage?:string
+}
+interface ChatNavProps {
+  MentorData: Chat;
+}
+
+const ChatNav  = () => {
   return (
     <div className='w-full h-full  mt-2'>
        <div className="w-full h-full  border border-black ">
@@ -13,7 +32,7 @@ const ChatNav = () => {
             </div>
             <div className="w-4/12 h-full ">
                 <div className="w-full h-1/2">
-                <h1 className="font-semibold ml-1 text-lg">Mohd nihal</h1>
+                <h1 className="font-semibold ml-1 text-lg">Mohd Nihal</h1>
                 </div>
                 <div className="w-full h-1/2 ">
                 <h1 className="font-thin text-gray-500 text-sm ml-1">Last seen : 10:25 pm </h1>
@@ -23,6 +42,8 @@ const ChatNav = () => {
         </div>
         {/* <div className="w-full h-full bg-slate-200 border border-black mt-1"></div> */}
        </div>
+
+       
        <Chating/>
     </div>
   )

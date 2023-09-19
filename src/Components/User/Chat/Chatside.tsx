@@ -21,8 +21,9 @@ export interface Chat {
 
 const Chatside = () => {
     const [MentorData,setMentorData] = useState<Chat[]>([])
+    const [messaging,setMessagig] = useState<boolean>(false)
     useEffect(()=>{
-        ShowMetors()
+       ShowMetors()
     },[])
  const ShowMetors = async()=>{
  const {data} = await axiosIntance.get("/GetMentors")
@@ -49,14 +50,14 @@ const Chatside = () => {
                                 placeholder="Search users"
                             />
                         </div>
-                    <div className="w-full h-[470px] overflow-auto mt-2 bg-gray-100">
+                    <div className="w-full h-[470px] overflow-auto mt-2 bg-slate-200 p-1 ">
                         {
                             MentorData?.map((itmes:any)=>(
                              
                                 
                                 
                                 
-                    <div className="w-full h-16 mt-1 bg-white border border-black">
+                    <div className="w-full h-16 mt-1 bg-white border border-black" onClick={()=>setMessagig(true)}>
                         <div className="w-full h-full  p-1  flex gap-1">
                             <div className="w-3/12 h-full  flex justify-center items-center">
                                 <div className="w-14 h-14 rounded-full ">
@@ -84,7 +85,23 @@ const Chatside = () => {
                     </div>
                     </div>
                 </div>
-                <ChatNav/>
+                {
+                    messaging?
+                    <ChatNav />
+                    :
+                    <div className="w-full h-screen  relative ">
+                        <div className="w-full h-20   z-50 absolute p-1 mt-2">
+                            <div className="w-full h-full  flex justify-center items-center">
+                                <h1 className="font-bold text-3xl text-black font-serif underline">Unlock Your Potential with Personalized Mentors</h1>
+                            </div>
+                        </div>
+                        <div className="w-full h-full bg-yellow-200 flex justify-center  ">
+                                <img src="\Images\nihal.jpg" className="w-full h-full"  alt="No Message founded"/>
+                        </div>
+                    </div>
+
+                }
+
             </div>
         
     );
