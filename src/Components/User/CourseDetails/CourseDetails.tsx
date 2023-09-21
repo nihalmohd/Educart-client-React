@@ -129,9 +129,7 @@ const CourseDetail = () => {
   return (
 
     <div>
-
       <div>
-
         <div className="w-full h-full mb-2" key={courseDetails?._id}>
           <div className="w-full h-72 bg-[#2d2f31] p-1 flex gap-1 ">
             <div className="w-3/5 h-full  pl-1 pr-1">
