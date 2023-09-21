@@ -4,7 +4,7 @@ import { logoutMentor } from '../../Redux/Slice/Mentorslice'
 import { axiosIntance } from '../../Api/config'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { TbEdit, TbLockCog } from 'react-icons/tb'
+import { TbEdit, TbHeartPlus, TbLockCog } from 'react-icons/tb'
 import { SiCoursera } from 'react-icons/si'
 import { TiContacts } from 'react-icons/ti'
 import { BiLogOut } from 'react-icons/bi'
@@ -179,7 +179,7 @@ const handleLogout=()=>{
                         </div>
 
                         <div className=" sm:w-full  md: w-4/5 h-full   p-1" >
-                        <div className="w-full h-60  p-1 border-2 bg-gray-100 border-black">
+                        <div className="w-full h-72  p-1 border-2 bg-gray-100 border-black">
                             <div className="w-full h-10 mt-3 p-1 flex gap-1 border border-black  hover:bg-black hover:text-white " onClick={()=>navigate('/Mentor/MentorCourse')}>
                               <div className="w-16 h-full  flex justify-center items-center">
                                 <h1 className='font-semibold text-3xl text-black hover:text-white  '><SiCoursera/></h1>
@@ -196,14 +196,14 @@ const handleLogout=()=>{
                               <h1 className='font-semibold text-xl p-1' >Change Password</h1>
                               </div>
                             </div>
-                            {/* <div className="w-full h-10 mt-3 p-1 flex gap-1 border border-black  hover:bg-black hover:text-white " onClick={()=>{navigate("/Whishlist")}}>
+                            <div className="w-full h-10 mt-3 p-1 flex gap-1 border border-black  hover:bg-black hover:text-white " onClick={()=>{navigate("/Mentor/MentorChat")}}>
                             <div className="w-16 h-full  flex justify-center items-center" >
                                 <h1 className='font-semibold text-3xl text-black'><TbHeartPlus/></h1>
                               </div>
                               <div className="w-full h-full  flex justify-start items-center">
-                              <h1 className='font-semibold text-xl p-1' >Whishlist</h1>
+                              <h1 className='font-semibold text-xl p-1' >Message</h1>
                               </div>
-                            </div> */}
+                            </div>
                             <div className="w-full h-10 mt-3  p-1 flex gap-1 border border-black hover:bg-black hover:text-white  ">
                             <div className="w-16 h-full  flex justify-center items-center">
                                 <h1 className='font-semibold text-3xl text-black hover:text-white'><TiContacts/></h1>

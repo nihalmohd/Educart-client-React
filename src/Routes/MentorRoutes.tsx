@@ -8,6 +8,8 @@ import MentorCourseUpload from '../Pages/Mentor/MentorCourseUpload';
 import MentorProfilePage from '../Pages/Mentor/MentorProfilePage';
 import Pagenotfound from '../Pages/404page/Pagenotfound';
 import MentorCourseDetailPage from '../Pages/Mentor/MentorCourseDetailPage';
+import MentorChat from '../Pages/Mentor/MentorChat';
+
 
 
 
@@ -20,6 +22,7 @@ const MentorRoutes = () => {
             <Route path='MentorCourseUpload' element={<MentoProtectedRouter><MentorCourseUpload /></MentoProtectedRouter>} />
             <Route path='MentorProfile' element={<MentoProtectedRouter><MentorProfilePage /></MentoProtectedRouter>} />
             <Route path='MentorCourseDetaild/:_id' element={<MentoProtectedRouter>< MentorCourseDetailPage/></MentoProtectedRouter>} />
+            <Route path='MentorChat'element={<MentoProtectedRouter><MentorChat/></MentoProtectedRouter>}/>
             <Route path='*' element={<Pagenotfound/>}/>
         </Routes>
     )

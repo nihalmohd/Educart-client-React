@@ -1,7 +1,8 @@
 import { useScriptProviderContext } from '@paypal/react-paypal-js';
-import Chating from './Chating'
 import { useEffect } from 'react';
-import { axiosIntance } from '../../../Api/config';
+import MentorChating from './MentorChating';
+import Chating from '../User/Chat/Chating';
+
 
 
 
@@ -25,7 +26,7 @@ interface ChatNavProps {
 }
 
 
-const ChatNav:React.FC<ChatNavProps>  = ({selectdChat}) => {
+const MentorChatNav:React.FC<ChatNavProps>  = ({selectdChat}) => {
 
 
 
@@ -52,10 +53,11 @@ const ChatNav:React.FC<ChatNavProps>  = ({selectdChat}) => {
         {/* <div className="w-full h-full bg-slate-200 border border-black mt-1"></div> */}
        </div>
 
-       
        <Chating selectdChat={selectdChat}/>
+
+       {/* <MentorChating selectdChat={selectdChat}/> */}
     </div>
   )
 }
 
-export default ChatNav
+export default MentorChatNav

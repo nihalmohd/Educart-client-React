@@ -1,8 +1,7 @@
 
 import { useEffect, useState } from "react"
-import { axiosIntance } from "../../../Api/config";
-import { io } from "socket.io-client";
-import { Socket } from "dgram";
+import { axiosIntance } from "../../Api/config";
+
 
 
  interface message {
@@ -11,15 +10,15 @@ import { Socket } from "dgram";
     content: string;
     chat: string
   }
-  
+
   interface mentor {
-      
-      Username:string;
-      Email:string;
-      Password:string;
-      ProfileImage:string
-    }
-    
+
+    Username:string;
+    Email:string;
+    Password:string;
+    ProfileImage:string
+  }
+  
   export interface Chat {
     _id?:string
     UserId?:string
@@ -30,14 +29,11 @@ import { Socket } from "dgram";
   interface ChatNavProps {
       selectdChat: Chat;
     }
+     
     
-    
-    const Chating:React.FC<ChatNavProps> = ({selectdChat}) => { 
-        let socket:any;
+    const MentorChating:React.FC<ChatNavProps> = ({selectdChat}) => { 
         const [content, setcontent] = useState<string>("")
         const [messages,Setmessages] = useState<message[]>()
-        
-        socket  = io(process.env.REACT_APP_BASEURL as string);
 
         let Role =''   
         let UserId=''
@@ -56,13 +52,15 @@ import { Socket } from "dgram";
             const {Mentorlogincheck} = Mentor
             if(Mentorlogincheck){
                 MentorId = Mentorlogincheck._id 
-                Role = Mentorlogincheck?.Role 
+                Role = Mentorlogincheck?.role 
             }
              console.log(MentorId,"menor id is priting");
              
             }
             
             const chatId  = selectdChat._id
+            console.log(chatId,"didint getting");
+            
             const currentId = Role ==="User"?UserId :MentorId
 
 
@@ -70,28 +68,11 @@ useEffect(()=>{
     TakeMessages()
 },[])
 
-useEffect(() => {
-    socket.emit("setup", currentId);
-  }, [currentId, socket]);
 
-useEffect(()=>{
-     socket.emit('join chat',UserId)
-    console.log(socket)
-},[])
-
-useEffect(()=>{
-  socket?.on('message recieved',((data:any)=>{
-    console.log(data);
-  })) 
-},[])
 
     const HandleClick =async () => { 
         if(content.trim().length>0){
             const {data} = await axiosIntance.post("/CreateMessage",{currentId,chatId,content,Role})
-            const {createdMessageFounded} =data
-            console.log("Founded",createdMessageFounded);
-            
-             socket?.emit("new message",createdMessageFounded);
              console.log(data);  
              TakeMessages()
         }
@@ -108,17 +89,16 @@ useEffect(()=>{
         const {data} = await axiosIntance.get("/FindingMessage",{params:{chatId}})
         console.log(data);
         if(data){
-            const {FoundedMessages}=data 
+            const {FoundedMessages}=data
             Setmessages(FoundedMessages)   
 
         }
     }
 
-
     return (
         <div className='w-full h-full  mt-1 '>
             <h1>{Role}</h1>
-            <h1>{UserId}</h1>
+            <h1>{MentorId}</h1>
             <h1>{content}</h1>
             <div className="w-full h-[440px] overflow-auto  border border-black  pb-1 6">
                 <div className="w-full h-full ">
@@ -153,8 +133,9 @@ useEffect(()=>{
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    {/* <div className="w-full h-fit flex justify-end items-end mt-1">
+                                    {
+
+                                    <div className="w-full h-fit flex justify-end items-end mt-1">
                                         <div className="w-1/2 h-fit  flex gap-1 justify-end itmes-end mt-1 p-1 ">
                                             <div className="w-fit h-fit  bg-slate-200 rounded-s-xl rounded-b-xl ml-1 mt-5">
                                                 <h1 className='font-semibold text-lg text-gray-500 p-2 m-1'>nialll </h1>
@@ -163,10 +144,12 @@ useEffect(()=>{
                                                 <img src="https://res.cloudinary.com/dgb07yvbv/image/upload/v1694102277/uibg2w6q56ybr77bgotd.png" className='w-full h-full object-cover' alt="no img" />
                                             </div>
                                         </div>
-                                    </div> */}
+                                    </div>
+                                    }
+                                    
                                     <div>
                                     {
-                                            Role==="User"?(
+                                            Role==="Mentor"?(
                                                 messages?.map((items)=>(
 
                                     <div className="w-full h-fit flex justify-end items-end mt-1">
@@ -180,8 +163,9 @@ useEffect(()=>{
                                         </div>
                                     </div>
                                                 ))  
-                                            ):(
-                                                messages?.map((items)=>(
+                                            ):(<></>)
+                                        }
+                                    </div>
 
                                     <div className="w-full h-fit flex justify-start items-end    mt-1">
                                         <div className="w-1/2 h-fit  flex justify-start itmes-end ml-1 p-1">
@@ -189,16 +173,10 @@ useEffect(()=>{
                                                 <img src="https://res.cloudinary.com/dgb07yvbv/image/upload/v1694102277/uibg2w6q56ybr77bgotd.png" className='w-full h-full object-cover' alt="no img" />
                                             </div>
                                             <div className="w-fit h-fit  bg-slate-200 rounded-r-xl rounded-b-xl ml-1 mt-5">
-                                                <h1 className='font-semibold text-lg text-gray-500 p-2 m-1'>{items.content}</h1>
+                                                <h1 className='font-semibold text-lg text-gray-500 p-2 m-1'>nialll is the one of the develper in kerela we can contact with him using his personl web app like its me nihal </h1>
                                             </div>
                                         </div>
                                     </div> 
-                                                ))
-                                            )
-                                      
-
-                                      }
-                                      </div>
                                 </div>
                             </div>
                         </div>
@@ -213,4 +191,4 @@ useEffect(()=>{
     )
 }
 
-export default Chating
+export default MentorChating

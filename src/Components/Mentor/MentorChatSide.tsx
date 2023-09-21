@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import ChatNav from "./ChatNav";
-import { axiosIntance } from "../../../Api/config";
+import { axiosIntance } from "../../Api/config";
+import ChatNav from "../User/Chat/ChatNav";
+import MentorChatNav from "./MentorChatNav";
+// import ChatNav from "./ChatNav";
+// import { axiosIntance } from "../../../Api/config";
 
 
 
@@ -24,7 +27,7 @@ interface mentor {
   
 
 
-const Chatside = () => {
+const MentorChatSide = () => {
     const [MentorData,setMentorData] = useState<Chat[]>([])
     const [selectedChat,setSelectedchat] = useState<Chat |null>(null)
     useEffect(()=>{
@@ -33,7 +36,7 @@ const Chatside = () => {
 
     
  const ShowMetors = async()=>{
- const {data} = await axiosIntance.get("/GetMentors")
+ const {data} = await axiosIntance.get("/Mentor/TakeUsers")
  if(data){
      console.log(data); 
     const {FoundedUserChat} =data
@@ -69,7 +72,7 @@ const Chatside = () => {
                             <div className="w-3/12 h-full  flex justify-center items-center">
                                 <div className="w-14 h-14 rounded-full ">
                                     <img
-                                        src={itmes.Mentor?.ProfileImage}
+                                        src={itmes.User?.ProfileImage}
                                         className="w-fit h-fit object-cover"
                                         alt="No image founded"
                                     />
@@ -77,7 +80,7 @@ const Chatside = () => {
                             </div>
                             <div className="w-full h-full ">
                                 <div className="w-full h-1/2  flex items-center">
-                                    <h1 className="font-semibold ml-1 text-lg">{itmes.Mentor.Username}</h1>
+                                    <h1 className="font-semibold ml-1 text-lg">{itmes.User?.Username}</h1>
                                 </div>
                                 <div className="w-full  h-1/2 ">
                                     <h1 className="font-thin text-gray-500 text-sm ml-1">Heloo</h1>
@@ -94,7 +97,7 @@ const Chatside = () => {
                 </div>
                 {
                     selectedChat?
-                    <ChatNav selectdChat={selectedChat} />
+                    <MentorChatNav selectdChat={selectedChat} />
                     :
                     <div className="w-full h-screen  relative ">
                         <div className="w-full h-20   z-50 absolute p-1 mt-2">
@@ -114,4 +117,4 @@ const Chatside = () => {
     );
 };
 
-export default Chatside;
+export default MentorChatSide;
