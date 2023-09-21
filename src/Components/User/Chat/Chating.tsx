@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { axiosIntance } from "../../../Api/config";
 import { io } from "socket.io-client";
-import { Socket } from "dgram";
+
 
 
  interface message {

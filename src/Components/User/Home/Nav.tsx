@@ -64,13 +64,13 @@ const Nav = () => {
    console.log(User);
   }
   const serchCourse =(e:React.ChangeEvent<HTMLInputElement>) =>{ 
-    
+    setValue(e.target.value)
     console.log(value);
     const FileredCours = course?.filter(course=>{
-      return course.courseTitle.toLowerCase().includes(value.toLowerCase() as string)
-        ||course.courseTitle.toLocaleUpperCase().includes(value.toLowerCase() as string)
+      return course.courseTitle.toLowerCase().includes(value as string)
+        ||course.courseTitle.toLocaleUpperCase().includes(value as string)
         || course.coursePrice.toString().includes(value as string)
-        ||course.Mentorname.toLocaleLowerCase().includes(value.toLowerCase() as string)
+        ||course.Mentorname.toLocaleLowerCase().includes(value as string)
     })
     setCourse(FileredCours)
 }
