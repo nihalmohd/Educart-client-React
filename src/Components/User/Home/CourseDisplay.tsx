@@ -59,13 +59,13 @@ const CourseDisplay = () => {
                       <h1 className='text-bas font-serif font-bold underline'>{items.courseTitle} </h1>
                     </div>
                     <div className="w-full h-8 mb-1 flex">
-                      <div className='w-1/2 h-full  flex items-center'>
+                      {/* <div className='w-1/2 h-full  flex items-center'>
                       <GiRoundStar/>
                       <GiRoundStar/>
                       <GiRoundStar/>
                       <GiRoundStar/>
                       <GiRoundStar/>
-                      </div>
+                      </div> */}
                       <div className='w-1/2 h-8 flex items-center justify-center'>
                         <h1 className='text-xs font-semibold text-stone-500 text-start'>4.3</h1>
                       </div>

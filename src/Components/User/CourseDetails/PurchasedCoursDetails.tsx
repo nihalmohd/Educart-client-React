@@ -164,7 +164,7 @@ const PurchasedCoursDetails = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-full p-1">
+      {/* <div className="w-full h-full p-1">
         <div className="w-full h-full  border-2 border-dashed border-black p-1">
           <div className="w-full h-10  border-2 border-black flex justify-center items-center ">
             <h1 className="font-serif text-2xl font-bold underline">
@@ -286,7 +286,7 @@ const PurchasedCoursDetails = () => {
             </form>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

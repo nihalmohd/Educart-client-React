@@ -188,14 +188,14 @@ const handleLogout=()=>{
                               <h1 className='font-semibold text-xl p-1' >My course</h1>
                               </div>
                             </div>
-                            <div className="w-full h-10 mt-3 p-1 flex gap-1 border border-black  hover:bg-black hover:text-white ">
+                            {/* <div className="w-full h-10 mt-3 p-1 flex gap-1 border border-black  hover:bg-black hover:text-white ">
                             <div className="w-16 h-full  flex justify-center items-center ">
                                 <h1 className='font-semibold text-3xl text-black hover:text-white'><TbLockCog/></h1>
                               </div>
                               <div className="w-full h-full  flex justify-start items-center">
                               <h1 className='font-semibold text-xl p-1' >Change Password</h1>
                               </div>
-                            </div>
+                            </div> */}
                             <div className="w-full h-10 mt-3 p-1 flex gap-1 border border-black  hover:bg-black hover:text-white " onClick={()=>{navigate("/Mentor/MentorChat")}}>
                             <div className="w-16 h-full  flex justify-center items-center" >
                                 <h1 className='font-semibold text-3xl text-black'><TbHeartPlus/></h1>

@@ -68,7 +68,7 @@ const MentorCourseDetail = () => {
                             <div className="w-1/3 h-10 ml-4 ">
                             <h1 className='  text-start font-bold text-2xl text-white underline'> ₹{CourseByid?.coursePrice}</h1>
                             </div>
-                            <div className="w-1/2 h-10  pl-4 flex  items-center">
+                            {/* <div className="w-1/2 h-10  pl-4 flex  items-center">
                                 <h1 className='text-lg text-white font-semibold'><GiRoundStar /></h1>
                                 <h1 className='text-lg text-white font-semibold'><GiRoundStar /></h1>
                                 <h1 className='text-lg text-white font-semibold'><GiRoundStar /></h1>
@@ -76,7 +76,7 @@ const MentorCourseDetail = () => {
                                 <h1 className='text-lg text-white font-semibold'><GiRoundStar /></h1>
                                 <h1> </h1>
                                 <h1 className='text-lg text-white font-semibold ml-5'>4.2</h1>
-                            </div>
+                            </div> */}
                             
                             <div className="w-1/3 h-10 -100 pl-4 ">
                                 <h1 className='text-start font-semibold text-white'>Created By:{CourseByid?.Mentorname}</h1>
