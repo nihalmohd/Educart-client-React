@@ -51,7 +51,6 @@ console.log(OTP ,"otpppppp");
       navigate("/SignUp")
       setOtperr("Please Enter Valid OTP")
       }else{
-       
      navigate('/')
       }
     } catch (error) {
