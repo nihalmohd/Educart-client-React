@@ -78,17 +78,17 @@ console.log(course);
 
   return (
     <div className="flex flex-col justify-center w-full   z-50 bg-white">
-      <div className="w-full h-20 sm:h-[65px] flex justify-between border shadow-lg border-b ">
+      <div className=" w-full h-20 sm:h-[65px] flex justify-between border shadow-lg border-b ">
         
         <img className="h-full hover:cursor-pointer " src="/Images/Untitled-1-01.png" alt="Logo" onClick={()=>{navigate("/")}} />
 
         
-        <div className="hidden sm:flex items-center hover:cursor-pointer">
+        <div className="sm:hidden md:flex lg:flex items-center hover:cursor-pointer">
           <span className="mr-4 text-black"onClick={()=>{navigate('/Category')}}>Category</span>
         </div>
 
         
-        <div className="hidden sm:flex items-center w-3/4 sm:w-2/6 relative" >
+        <div className="sm:hidden lg:flex md:flex items-center w-3/4 sm:w-2/6 relative" >
           <input 
           onChange={serchCourse}
             type="text"
@@ -99,7 +99,7 @@ console.log(course);
           {
             searchdiv?( 
 
-            <div className="w-full h-4/6  fixed mt-16 z-50  flex justify-center items-center">
+            <div className="sm:hiddenw-full h-4/6  fixed mt-16 z-50  flex justify-center items-center">
           
             <div className="w-2/4 h-full bg-white mr-20 p-2 overflow-auto shadow-lg  ">
               <div className="w-full h-10  flex justify-end items-center ">
@@ -133,7 +133,7 @@ console.log(course);
            
           }
         
-        <div className="hidden sm:flex items-center gap-2">
+        <div className="sm:hidden md:flex lg:flex items-center gap-2">
           <span className="mx-4 text-black hover:cursor-pointer">Mentors</span>
           <span className="mx-4 text-black hover:cursor-pointer"onClick={()=>{navigate('/Mycourses')}}>My Course</span>
         </div>
@@ -143,7 +143,7 @@ console.log(course);
           <FaRegHeart/>
         </div> */}
        
-        <div className="hidden sm:flex items-center hover:cursor-pointer">
+        <div className="sm:hidden md:flex lg:flex items-center hover:cursor-pointer">
           <GrNotification/>
         </div>
 
