@@ -127,7 +127,7 @@ const PurchasedCoursDetails = () => {
               </h1>
             </div>
           </div>
-          <div className=" md:w-2/5 lg:2/4 h-96 bg-slate-200 border-2 border-black p-1 overflow-auto">
+          <div className=" md:w-2/5 lg:2/4 lg:h-96 md:h-96 sm:min-h-96 bg-slate-200 border-2 border-black p-1 overflow-auto">
             {courseDetails ? (
               courseDetails?.Class?.map((items, index) => (
                 <div
