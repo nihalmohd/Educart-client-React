@@ -88,17 +88,17 @@ const PurchasedCoursDetails = () => {
   return (
     <div>
       <div className="w-full h-full p-1  ">
-        <div className="w-full h-20 bg-transparent  text-black border-2 border-black mt-2 ">
+        <div className="w-full h-20 bg-transparent  text-black border-2 border-black mt-2  ">
           <h1 className="text-center text-3xl underline">Educart Classes</h1>
           <h1 className=" text-black text-lg text-center">
             Unlock Your Learning Potential with Educart Classes
           </h1>
         </div>
         <div
-          className="w-full  h-full flex gap-1 p-1  "
+          className="w-full  h-full  p-1 md:flex md:gap-1 lg;flex lg:gap-1  "
           key={selectedClass?.classname}
         >
-          <div className="w-3/5 h-full border-2 border-black p-2 ">
+          <div className=" sm:w-full w-3/5 h-full border-2 border-black p-2 ">
             <div className="w-full h-[460px]">
               <video
                 controls
@@ -127,7 +127,7 @@ const PurchasedCoursDetails = () => {
               </h1>
             </div>
           </div>
-          <div className="w-2/5 h-96 bg-slate-200 border-2 border-black p-1 overflow-auto">
+          <div className=" md:w-2/5 lg:2/4 h-96 bg-slate-200 border-2 border-black p-1 overflow-auto">
             {courseDetails ? (
               courseDetails?.Class?.map((items, index) => (
                 <div
@@ -187,32 +187,9 @@ const PurchasedCoursDetails = () => {
                       <h1 className="font-semibold text-sm ">Mohd Nihal</h1>
                     </div>
                   </div>
-                  <div className="w-full h-24 flex justify-start items-end">
+                  <div className="w-full h-14 flex justify-start items-end">
                     <div className="w-11/12 h-full  p-1">
                       <div className="w-full h-20  ">
-                        <div className="w-full h-8 flex justify-start items-center">
-                          <div className="w-1/2 h-10   flex  items-center">
-                            <h1 className="text-lg text-black font-semibold">
-                              <GiRoundStar />
-                            </h1>
-                            <h1 className="text-lg text-black font-semibold">
-                              <GiRoundStar />
-                            </h1>
-                            <h1 className="text-lg text-black font-semibold">
-                              <GiRoundStar />
-                            </h1>
-                            <h1 className="text-lg text-black font-semibold">
-                              <GiRoundStar />
-                            </h1>
-                            <h1 className="text-lg text-black font-semibold">
-                              <GiRoundStar />
-                            </h1>
-                            <h1> </h1>
-                            <h1 className="text-lg text-black font-semibold ml-5">
-                              4.2
-                            </h1>
-                          </div>
-                        </div>
                         <h1 className="font-semibold  text-xl text-clip">
                           Very helpfull course i ever seen{" "}
                         </h1>
@@ -236,32 +213,10 @@ const PurchasedCoursDetails = () => {
                     <h1 className="font-semibold text-sm ">Mohd Nihal</h1>
                   </div>
                 </div>
-                <div className="w-full h-24 flex justify-start items-end">
+                <div className="w-full h-12 flex justify-start items-end">
                   <div className="w-11/12 h-full  p-1">
                     <div className="w-full h-20  ">
-                      <div className="w-full h-8 flex justify-start items-center">
-                        <div className="w-1/2 h-10   flex  items-center">
-                          <h1 className="text-lg text-black font-semibold">
-                            <GiRoundStar />
-                          </h1>
-                          <h1 className="text-lg text-black font-semibold">
-                            <GiRoundStar />
-                          </h1>
-                          <h1 className="text-lg text-black font-semibold">
-                            <GiRoundStar />
-                          </h1>
-                          <h1 className="text-lg text-black font-semibold">
-                            <GiRoundStar />
-                          </h1>
-                          <h1 className="text-lg text-black font-semibold">
-                            <GiRoundStar />
-                          </h1>
-                          <h1> </h1>
-                          <h1 className="text-lg text-black font-semibold ml-5">
-                            4.2
-                          </h1>
-                        </div>
-                      </div>
+                     
                       <h1 className="font-semibold  text-xl text-clip">
                         Nice work{" "}
                       </h1>
@@ -279,7 +234,7 @@ const PurchasedCoursDetails = () => {
                     className="w-full h-10 border-2 pl-2 border-gray-400 rounded-xl"
                   />
                 </div>
-                <button className="border-2 border-black w-1/12 h-10 text-lg text-balck font-semibold hover:bg-black hover:text-white flex justify-center items-center rounded-sm">
+                <button onClick={(e)=>{e.preventDefault()}} className="border-2 border-black  w-1/12 h-10 lg:text-lg md:text-lg text-balck font-semibold hover:bg-black hover:text-white flex justify-center items-center rounded-sm sm:text-sm">
                   Post
                 </button>
               </div>
