@@ -139,7 +139,7 @@ const handleSignUp=()=>{
             <div className=" w-full h-10 mt-1 p-1 flex-col" >
                 <h1 className="text-black text-sm ml-10" >--  Or Login With Your Email -- </h1>
             </div>
-            <div className=" w-full h-80 flex-col p-1">
+            <div className=" w-full h-64 flex-col p-1">
                 <form action="">
                     <div className=" w-full h-6 ">
                         <h1>Username</h1>

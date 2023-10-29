@@ -4,7 +4,7 @@ import LoginAuthButtons from './LoginAuthButtons'
 
 const LoginFormImage = () => {
   return (
-    <div className=" w-full h-screen overflow-x-hidden ">
+    <div className=" w-full h-full overflow-x-hidden ">
       <div className="flex flex-col justify-center ">
         <div className="w-full h-20 sm:h-14 flex justify-between border shadow-lg border-b bg-white " >
           <img className=" h-full " src="\Images\Untitled-1-01.png" alt="" />
