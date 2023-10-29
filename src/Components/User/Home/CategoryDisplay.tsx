@@ -33,7 +33,7 @@ const DisplayCategory = async() =>{
   return null
 }
   return (
-    <div className='pl-2 pr-2 mb-10'>
+    <div className='pl-2 pr-2 mb-10 sm:mt-10'>
       <div className="w-full md:h-full lg:h-full sm:h-full bg-slate-200 p-2  hover:scale-x-100 rounded-xl overflow-hidden">
         <div className="w-full h-10 bg-white flex justify-center items-center border-2 border-slate-500">
           <h1 className='font-serif text-2xl font-bold underline'>Categories</h1>
