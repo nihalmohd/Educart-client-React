@@ -19,8 +19,8 @@ const LoginAuthButtons = () => {
   return (
     <div>
          <>
-        <div className="flex">
-            <div className="flex flex-col  mt-4 justify-center items-center h-screen p-3">
+        <div className="flex bg-green-200">
+            <div className="flex flex-col  mt-4 justify-center items-center h-screen p-3 ">
                 <h1 className="text-xl font-bold mb-4">Welcome to Educart...!</h1>
 
                 <div className="w-80 h-10 bg-gray-500 rounded-3xl p-1.5 relative flex gap-14">
