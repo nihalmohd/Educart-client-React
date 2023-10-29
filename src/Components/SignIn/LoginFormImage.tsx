@@ -10,7 +10,7 @@ const LoginFormImage = () => {
           <img className=" h-full " src="\Images\Untitled-1-01.png" alt="" />
         </div>
       </div>
-      <div className="w-full h-full bg-vilot-200 flex p-2">
+      <div className="w-full h-full flex p-2">
         <div className=" sm:hidden md:w-1/2 md:h-full md:flex  md:justify-center md:items-center " >
           <div className="md:flex w-full h-full justify-center items-center  ">
             <img src="\Images\441-removebg-preview.png" alt="" />

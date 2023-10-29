@@ -23,7 +23,7 @@ const  Authbuttons = () => {
         <>
         <div className="flex">
             <div className=" flex-col  mt-4 justify-center items-center h-screen p-3">
-                <h1 className="text-xl font-bold mb-4">Welcome to Educart...!</h1>
+                <h1 className="text-xl font-bold mb-4 text-center">Welcome to Educart...!</h1>
 
                 <div className="w-80 h-10 bg-gray-500 rounded-3xl p-1.5 relative flex gap-14">
                 <div className={`${ShowMentorSignUpForm?"bg-black w-40 h-7 rounded-3xl pl-9":"bg-transparent w-40 h-7 rounded-3xl pl-10"}`}>
